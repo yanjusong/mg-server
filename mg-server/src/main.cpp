@@ -65,11 +65,7 @@ static void onHttpEvent(mg_connection *conn, int ev_type, void *ev_data)
         std::cout << "query_string:" << query_string << "\n";
         std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
 
-        if (uri == "/cocoyan.jpg") {
-            mg_http_send_redirect(conn, 302, mg_mk_str("http://mrt.xesimg.com/user/h/def10002.png"), mg_mk_str(NULL));
-        } else {
-            mg_serve_http(conn, hm, opts);
-        }
+        mg_serve_http(conn, hm, opts);
         break;
     }
     default:
