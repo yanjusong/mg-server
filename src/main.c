@@ -141,7 +141,7 @@ static void startServer(const char *root, const char *host, const char *port, co
     // If 'cert' is empty, starting a HTTP server, otherwise starting a HTTPS server.
     int isHTTPS = (strlen(cert) > 0 ? 1 : -1);
 
-#ifdef _WIN32
+#ifdef MG_ENABLE_SSL
     if (isHTTPS > 0) {
         bind_opts.ssl_cert = certBuf;
     }
