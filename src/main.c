@@ -140,9 +140,13 @@ static void startServer(const char *root, const char *host, const char *port, co
     // If 'cert' is empty, starting a HTTP server, otherwise starting a HTTPS server.
     int isHTTPS = (strlen(cert) > 0 ? 1 : -1);
 
+#ifdef _WIN32
     if (isHTTPS > 0) {
         bind_opts.ssl_cert = certBuf;
     }
+#else
+    isHTTPS = -1;
+#endif
 
     connection = mg_bind_opt(&mgr, hostpostBuf, onHttpEvent, bind_opts);
 
@@ -153,11 +157,7 @@ static void startServer(const char *root, const char *host, const char *port, co
 
     mg_set_protocol_http_websocket(connection);
 
-    if (isHTTPS) {
-        printf("starting HTTPS server at port:%s\n\n", port);
-    } else {
-        printf("starting HTTP server at port:%s\n\n", port);
-    }
+    printf("starting %s server at port:%s, root:%s\n\n", (isHTTPS > 0 ? "HTTPS" : "HTTP"), port, root);
 
     opts.document_root = rootBuf;
     opts.enable_directory_listing = "yes";
