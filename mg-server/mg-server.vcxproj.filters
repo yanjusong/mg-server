@@ -16,7 +16,7 @@
     <ClCompile Include="src\mongoose.c">
       <Filter>mongoose</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\main.c">
       <Filter>main</Filter>
     </ClCompile>
   </ItemGroup>
