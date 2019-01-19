@@ -47,6 +47,7 @@ static void onHttpEvent(struct mg_connection *conn, int ev_type, void *ev_data)
     char *query_  = NULL;
     char *name_   = NULL;
     char *value_  = NULL;
+    int i;
 
     switch (ev_type) {
     case MG_EV_HTTP_REQUEST:
@@ -79,7 +80,7 @@ static void onHttpEvent(struct mg_connection *conn, int ev_type, void *ev_data)
         CHECK_MALLOC_AND_ERROR_GOTO(value_, "value_", END);
 
         printf("****** header pairs: ******\n");
-        for (int i = 0; i < MG_MAX_HTTP_HEADERS; ++i) {
+        for (i = 0; i < MG_MAX_HTTP_HEADERS; ++i) {
             memcpy(name_, hname[i].p, hname[i].len);     name_[hname[i].len] = '\0';
             memcpy(value_, hvalue[i].p, hvalue[i].len);  value_[hvalue[i].len] = '\0';
             if (strlen(name_) == 0) {
