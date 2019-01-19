@@ -1,4 +1,4 @@
-#include "mongoose.h"
+ï»¿#include "mongoose.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -92,7 +92,7 @@ static void onHttpEvent(struct mg_connection *conn, int ev_type, void *ev_data)
 #endif
         printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 
-        // Ä£ÄâÖØ¶¨Ïò
+        // æ¨¡æ‹Ÿé‡å®šå‘
         if (strcmp(uri_, "/redirect") == 0) {
             mg_http_send_redirect(conn, 302, mg_mk_str("https://github.com/yanjusong"), mg_mk_str(NULL));
             printf("redirect to-> https://github.com/yanjusong\n");
@@ -263,20 +263,20 @@ int main(int argc, const char *argv[])
     findArgsValue(argc, argv, "type", type_, MAX_VALUE_LEN);
     findArgsValue(argc, argv, "cert", cert_, MAX_VALUE_LEN);
 
-    // »ñÈ¡¶Ë¿Ú
+    // è·å–ç«¯å£
     int port = atoi(port_);
     if ((port != 80 && port != 443 && port < 1024) || port > 65535) {
         printf("invalid port.\n");
         return -1;
     }
 
-    // »ñÈ¡·şÎñÆ÷ÀàĞÍ
+    // è·å–æœåŠ¡å™¨ç±»å‹
     if (strcmp(type_, "http") != 0 && strcmp(type_, "https") != 0) {
         printf("invalid server type.\n");
         return -2;
     }
 
-    // ¼ì²éÖ¤Êé
+    // æ£€æŸ¥è¯ä¹¦
     if (strcmp(type_, "https") == 0) {
         if (isExist(cert_) < 0) {
             printf("invalid certificate.\n");
@@ -284,7 +284,7 @@ int main(int argc, const char *argv[])
         }
     }
 
-    // »ñÈ¡¹ÒÔØÂ·¾¶
+    // è·å–æŒ‚è½½è·¯å¾„
     if (isExist(root_) < 0) {
         printf("invalid root path.\n");
         return -4;
